@@ -5,9 +5,9 @@ $(function () {
   var past = $(".past");
   var present = $(".present");
   var future = $(".future");
-  var saveButton = $(".savebtn")
+  var saveButton = $(".saveBtn")
   var currentDay;
-  var today = dayjs().format("D/M/YYYY");
+  var today = dayjs().format("M/D/YYYY");
   var timeBlock = $(".time-block")
   var hour = parseInt(dayjs().format("H"))
 
@@ -20,8 +20,14 @@ $(function () {
   // useful when saving the description in local storage?
   console.log(hour)
   console.log(timeBlock.attr("id"))
-  saveButton.on("click", function (event) {
-
+  saveButton.on("click",function (event) {
+    var button = $(event.target)
+    var unique = $(this).attr("id")
+    console.log(button.parent().prev().val())
+   
+    // need to point to the text area 
+      //  localStorage.setItem("toDo", $(this).attr("id").text())
+      localStorage.setItem(JSON.stringify($(this).attr("id")),JSON.stringify(button.parent().prev().val()) )
   })
 
 
@@ -35,6 +41,8 @@ $(function () {
     console.log("is this function running ")
 
     timeBlock.each(function () {
+      // need to compare number to number not to string 
+      // substring cuts the string at index 5 and leaves us with just the number of the hour
       var timeHour = parseInt($(this).attr("id").substring(5))
       console.log(timeHour , hour)
       if (timeHour === hour) {
@@ -65,7 +73,13 @@ $(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
+  // timeBlock.each(function(){
+  //   localStorage.setItem($(this.attr("id").text))
+
+  // })
+  
+
+
   // TODO: Add code to display the current date in the header of the page.
   $("#currentDay").text(today)
 });
