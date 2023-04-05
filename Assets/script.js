@@ -9,17 +9,17 @@ $(function () {
   var currentDay;
   var today = dayjs().format("D/M/YYYY");
   var timeBlock = $(".time-block")
-  var hour = "hour-"+dayjs().format("H")
-  
- 
+  var hour = parseInt(dayjs().format("H"))
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
   // function? How can DOM traversal be used to get the "hour-x" id of the
   // time-block containing the button that was clicked? How might the id be
   // useful when saving the description in local storage?
-console.log(hour)
-console.log(timeBlock.attr("id"))
+  console.log(hour)
+  console.log(timeBlock.attr("id"))
   saveButton.on("click", function (event) {
 
   })
@@ -31,33 +31,36 @@ console.log(timeBlock.attr("id"))
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-   function pPOrF(){
-        console.log("is this function running ")
+  function pPOrF() {
+    console.log("is this function running ")
 
-        timeBlock.each(function(){
-    
-    if(timeBlock.attr("id")=== hour){
-      console.log(timeBlock.attr("id"))
-      timeBlock.toggleClass(present)
-      console.log("present")
-      
-    }
-    if(hour < timeBlock.attr("id")){
-      timeBlock.toggleClass(past)
-    }
-    else{
-      timeBlock.toggleClass(future)
-    }
-  })
-  
-}
-   
-  
-   
-   
-pPOrF()
- 
- 
+    timeBlock.each(function () {
+      var timeHour = parseInt($(this).attr("id").substring(5))
+      console.log(timeHour , hour)
+      if (timeHour === hour) {
+        console.log(timeHour)
+        $(this).addClass("present")
+        console.log("present")
+
+        console.log(timeHour === hour)
+
+      }
+      else if (hour > timeHour) {
+        $(this).addClass("past")
+      }
+      else {
+        $(this).addClass("future")
+      }
+    })
+
+  }
+
+
+
+
+  pPOrF()
+
+
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
