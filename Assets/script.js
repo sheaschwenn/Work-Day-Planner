@@ -1,16 +1,12 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements in the html.
 $(function () {
-  var past = $(".past");
-  var present = $(".present");
-  var future = $(".future");
+
+  // declareing variables to point to my html
   var saveButton = $(".saveBtn")
-  var currentDay;
-  var today = dayjs().format("M/D/YYYY");
+  var today = dayjs().format("dddd, MMMM D");
   var timeBlock = $(".time-block")
   var hour = parseInt(dayjs().format("H"))
-  var textEl = $(".description");
-
 
 
   console.log(hour)
