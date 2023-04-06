@@ -19,7 +19,7 @@ A web planner that will store a users schedule by the hour
 An hourly work day planner where users can save their schedule to come back to later. Information written in the time blocks, if saved, will persist after the page has been reloaded.  The date at the top to match the current date and each day the time blocks will change styling depending on if the hour is passed, currently happening, or in the future. 
 
 
-![Site Langing Page](./site.gif)
+![Site Langing Page](./Assets/work-day-planner.gif)
 
 
 ## Table of Contents 
@@ -67,7 +67,7 @@ The method substring() was used to extract just the hour that had be assigned to
 This work day planner can be used to save tasks by the hour that the user can then come back and referance throughout the day. 
 
 
-![alt text](assets/images/screenshot.png)
+![Landing Page of work day planner](./Assets/Screenshot%202023-04-06%20153827.png)
 
 
 ## Learning Points 
