@@ -10,6 +10,7 @@ $(function () {
   var today = dayjs().format("M/D/YYYY");
   var timeBlock = $(".time-block")
   var hour = parseInt(dayjs().format("H"))
+  var textEl = $(".description");
 
 
   // TODO: Add a listener for click events on the save button. This code should
@@ -21,13 +22,18 @@ $(function () {
   console.log(hour)
   console.log(timeBlock.attr("id"))
   saveButton.on("click",function (event) {
-    var button = $(event.target)
-    var unique = $(this).attr("id")
-    console.log(button.parent().prev().val())
-   
+    var text = $(this).siblings(".description").val()
+    var timeId = $(this).parent().attr("id")
+    // console.log(button.prev().val())
+  //  console.log(unique)
+  //  console.log(button)
     // need to point to the text area 
+    // how can use this to point to the unique id for each time block
+    // need this to be the key so that when i getitem i can get item for that same timeblock
       //  localStorage.setItem("toDo", $(this).attr("id").text())
-      localStorage.setItem(JSON.stringify($(this).attr("id")),JSON.stringify(button.parent().prev().val()) )
+      // create an object that creates a new key for each id and then the associated string get paired with it 
+      localStorage.setItem(timeId,text )
+      // localStorage.setItem(timeId,JSON.stringify(text) )
   })
 
 
@@ -37,7 +43,7 @@ $(function () {
   // attribute of each time-block be used to conditionally add or remove the
   // past, present, and future classes? How can Day.js be used to get the
   // current hour in 24-hour time?
-  function pPOrF() {
+  function hourClass() {
     console.log("is this function running ")
 
     timeBlock.each(function () {
@@ -66,7 +72,7 @@ $(function () {
 
 
 
-  pPOrF()
+  hourClass()
 
 
   //
@@ -77,7 +83,9 @@ $(function () {
   //   localStorage.setItem($(this.attr("id").text))
 
   // })
-  
+  // $("#hour-9 .description").val(JSON.parse(localStorage.getItem("hour-9")))
+  $("#hour-9 .description").val(localStorage.getItem("hour-9"))
+//  .text($(this))
 
 
   // TODO: Add code to display the current date in the header of the page.
